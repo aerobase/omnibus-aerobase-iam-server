@@ -16,6 +16,7 @@
 
 name "keycloak-server"
 default_version "3.4.0.Final"
+skip_transitive_dependency_licensing true
 
 #dependency "ruby"
 #dependency "bundler"

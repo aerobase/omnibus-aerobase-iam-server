@@ -31,14 +31,8 @@ build_iteration Unifiedpush::BuildIteration.new.build_iteration
 # Creates required build directories
 dependency "preparation"
 
-# unifiedpush dependencies/components
-
-# unifiedpush internal dependencies/components
 # keycloak-server is the most expensive runtime build, therefore keep it first in order.
 dependency "keycloak-server"
-
-# Version manifest file
-dependency "version-manifest"
 
 exclude "**/.git"
 exclude "**/bundler/git"
@@ -47,6 +41,8 @@ exclude "**/bundler/git"
 # so we will grab them from an excluded folder
 package_scripts_path "#{install_dir}/.package_util/package-scripts"
 exclude '.package_util'
+exclude 'LICENSE'
+exclude 'version-manifest.*'
 
 package_user 'root'
 package_group 'root'
