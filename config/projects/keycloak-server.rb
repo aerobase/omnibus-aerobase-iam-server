@@ -33,6 +33,7 @@ dependency "preparation"
 
 # keycloak-server is the most expensive runtime build, therefore keep it first in order.
 dependency "keycloak-server"
+dependency "unifiedpush-keycloak-spi"
 
 exclude "**/.git"
 exclude "**/bundler/git"
