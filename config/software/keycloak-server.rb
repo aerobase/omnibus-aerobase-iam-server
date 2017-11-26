@@ -54,9 +54,6 @@ build do
   link "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay-#{version}", "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay"
   link "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-wildfly-server-subsystem/main/keycloak-wildfly-server-subsystem-#{version}.jar", "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-wildfly-server-subsystem/main/keycloak-wildfly-server-subsystem.jar"
 
-  # Also strip version from keycloak-services, referenced from unifiedpush-keycloak-spi.rb
-  link "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services-#{version}.jar", "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar"
-
   # Extract default-keycloak-subsys-config.cli to /embedded/apps/keycloak-server/keycloak-overlay/
   # This can't be done during reconfigure step since JDK is not required in production.
   command "cd #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/; jar -xvf  #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-wildfly-server-subsystem/main/keycloak-wildfly-server-subsystem.jar cli/default-keycloak-subsys-config.cli"

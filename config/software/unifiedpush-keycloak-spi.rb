@@ -22,21 +22,22 @@ source git: "https://github.com/aerobase/unifiedpush-keycloak-spi.git"
 
 relative_path "unifiedpush-keycloak-spi"
 build_dir = "#{project_dir}"
-keycloak_services_dir = "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar"
+keycloak_version = "3.4.0.Final"
+keycloak_services_jar = "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services-#{keycloak_version}.jar"
 
 build do
   command "mvn clean install -DskipTests"
 
   # Add aerobase service implementaion to keycloak-services
-  command "cd #{build_dir}/target/classes/; jar -uf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar org/keycloak/authentication/authenticators/resetcred/AerobaseResetCredentialEmail.class"
+  command "cd #{build_dir}/target/classes/; jar -uf #{keycloak_services_jar} org/keycloak/authentication/authenticators/resetcred/AerobaseResetCredentialEmail.class"
 
   # extract SPI file
-  command "cd #{build_dir}; jar -xvf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
+  command "cd #{build_dir}; jar -xvf #{keycloak_services_jar} META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
   # Replace service class
   command "sed -i -e 's/ResetCredentialEmail/AerobaseResetCredentialEmail/g' META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
   # Repack SPI file
-  command "cd #{build_dir}; jar -uf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
+  command "cd #{build_dir}; jar -uf #{keycloak_services_jar} META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
 end
