@@ -31,12 +31,12 @@ build do
   command "cd #{build_dir}/target/classes/; jar -uf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar org/keycloak/authentication/authenticators/resetcred/AerobaseResetCredentialEmail.class"
 
   # extract SPI file
-  command "cd #{build_dir}; jar -xvf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar /META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
+  command "cd #{build_dir}; jar -xvf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
   # Replace service class
-  command "sed -i -e 's/ResetCredentialEmail/AerobaseResetCredentialEmail/g' /META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
+  command "sed -i -e 's/ResetCredentialEmail/AerobaseResetCredentialEmail/g' META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
   # Repack SPI file
-  command "cd #{build_dir}; jar -uf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar /META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
+  command "cd #{build_dir}; jar -uf #{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services.jar META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
 end
