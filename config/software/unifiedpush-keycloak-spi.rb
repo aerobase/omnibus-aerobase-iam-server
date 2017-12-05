@@ -22,7 +22,7 @@ source git: "https://github.com/aerobase/unifiedpush-keycloak-spi.git"
 
 relative_path "unifiedpush-keycloak-spi"
 build_dir = "#{project_dir}"
-keycloak_version = "3.4.0.Final"
+keycloak_version = "3.4.1.CR1"
 keycloak_services_jar = "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services-#{keycloak_version}.jar"
 
 build do
