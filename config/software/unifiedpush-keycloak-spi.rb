@@ -31,6 +31,10 @@ build do
   # Add aerobase service implementaion to keycloak-services
   command "cd #{build_dir}/target/classes/; jar -uf #{keycloak_services_jar} org/keycloak/authentication/authenticators/resetcred/AerobaseResetCredentialEmail.class"
 
+  # Install pached Cors.java file.
+  # This can be removed when we upgrade to 3.4.1.CR2 or 3.4.1.Final or higher.
+  command "cd #{build_dir}/target/classes/; jar -uf #{keycloak_services_jar} org/keycloak/services/resources/Cors.java"
+
   # extract SPI file
   command "cd #{build_dir}; jar -xvf #{keycloak_services_jar} META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
