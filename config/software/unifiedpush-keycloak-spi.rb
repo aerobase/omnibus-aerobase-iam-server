@@ -34,6 +34,10 @@ build do
   # extract SPI file
   command "cd #{build_dir}; jar -xvf #{keycloak_services_jar} META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
+  # Install pached Cors.java file.
+  # This can be removed when we upgrade to 3.4.2.Final or higher.
+  command "cd #{build_dir}/target/classes/; jar -uf #{keycloak_services_jar} org/keycloak/services/resources/Cors.class"
+
   # Replace service class
   command "sed -i -e 's/ResetCredentialEmail/AerobaseResetCredentialEmail/g' META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
 
