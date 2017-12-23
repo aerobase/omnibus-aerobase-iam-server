@@ -22,7 +22,7 @@ source git: "https://github.com/aerobase/unifiedpush-keycloak-spi.git"
 
 relative_path "unifiedpush-keycloak-spi"
 build_dir = "#{project_dir}"
-keycloak_version = "3.4.1.Final"
+keycloak_version = "3.4.2.Final"
 keycloak_services_jar = "#{install_dir}/embedded/apps/keycloak-server/keycloak-overlay/modules/system/layers/keycloak/org/keycloak/keycloak-services/main/keycloak-services-#{keycloak_version}.jar"
 
 build do
@@ -33,10 +33,6 @@ build do
 
   # extract SPI file
   command "cd #{build_dir}; jar -xvf #{keycloak_services_jar} META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
-
-  # Install pached Cors.java file.
-  # This can be removed when we upgrade to 3.4.2.Final or higher.
-  command "cd #{build_dir}/target/classes/; jar -uf #{keycloak_services_jar} org/keycloak/services/resources/Cors.class"
 
   # Replace service class
   command "sed -i -e 's/ResetCredentialEmail/AerobaseResetCredentialEmail/g' META-INF/services/org.keycloak.authentication.AuthenticatorFactory"
