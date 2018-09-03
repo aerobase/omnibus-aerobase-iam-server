@@ -21,9 +21,9 @@ name "keycloak-server"
 maintainer "Yaniv Marom-Nachumi"
 homepage "https://github.com/aerobase/omnibus-keycloak-server"
 
-# Defaults to C:/unifiedpush on Windows
-# and /opt/unifiedpush on all other platforms
-install_dir "#{default_root}/unifiedpush"
+# Defaults to C:/aerobase on Windows
+# and /opt/aerobase on all other platforms
+install_dir "#{default_root}/aerobase"
 
 build_version   Omnibus::BuildVersion.new.semver
 build_iteration Unifiedpush::BuildIteration.new.build_iteration
@@ -33,7 +33,6 @@ dependency "preparation"
 
 # keycloak-server is the most expensive runtime build, therefore keep it first in order.
 dependency "keycloak-server"
-dependency "unifiedpush-keycloak-spi"
 
 exclude "**/.git"
 exclude "**/bundler/git"
