@@ -25,8 +25,8 @@ homepage "https://github.com/aerobase/omnibus-keycloak-server"
 # and /opt/aerobase on all other platforms
 install_dir "#{default_root}/aerobase"
 
-build_version   Omnibus::BuildVersion.new.semver
-build_iteration Unifiedpush::BuildIteration.new.build_iteration
+build_version IO.read(File.expand_path("../../../VERSION", __FILE__)).strip
+build_iteration 1
 
 # Creates required build directories
 dependency "preparation"
