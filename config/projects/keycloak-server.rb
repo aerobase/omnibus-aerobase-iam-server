@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-require "#{Omnibus::Config.project_root}/lib/unifiedpush/build_iteration"
-
 name "keycloak-server"
 maintainer "Yaniv Marom-Nachumi"
 homepage "https://github.com/aerobase/omnibus-keycloak-server"
