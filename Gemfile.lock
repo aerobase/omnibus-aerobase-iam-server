@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/aerobase/omnibus-software.git
-  revision: ecf824f0e81732370a721182a7d0fd123dd720b0
+  revision: c08b2b09f0e30375d3da205924f5c2b382430649
   branch: master
   specs:
     omnibus-software (2.2.0)
@@ -30,13 +30,13 @@ GEM
   specs:
     addressable (2.3.8)
     awesome_print (1.8.0)
-    aws-sdk (2.11.201)
-      aws-sdk-resources (= 2.11.201)
-    aws-sdk-core (2.11.201)
+    aws-sdk (2.11.205)
+      aws-sdk-resources (= 2.11.205)
+    aws-sdk-core (2.11.205)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.201)
-      aws-sdk-core (= 2.11.201)
+    aws-sdk-resources (2.11.205)
+      aws-sdk-core (= 2.11.205)
     aws-sigv4 (1.0.3)
     berkshelf (3.3.0)
       addressable (~> 2.3.4)
