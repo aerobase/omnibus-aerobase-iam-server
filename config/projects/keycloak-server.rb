@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-name "keycloak-server"
+name "aerobase-iam"
 maintainer "Yaniv Marom-Nachumi"
-homepage "https://github.com/aerobase/omnibus-keycloak-server"
+homepage "https://github.com/aerobase/omnibus-aerobase-iam-server"
 
 # Defaults to C:/aerobase on Windows
 # and /opt/aerobase on all other platforms

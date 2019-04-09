@@ -1,6 +1,6 @@
 Unifiedpush Server Omnibus 
 ==================================
-This project creates full-stack platform-specific packages for `keycloak-server`.
+This project creates full-stack platform-specific packages for `aerobase-iam`.
 
 Download Binaries
 ------------
@@ -38,7 +38,7 @@ Usage
 You create a platform-specific package using the `build project` command:
 
 ```shell
-$ bin/omnibus build keycloak-server
+$ bin/omnibus build aerobase-iam
 ```
 
 The platform/architecture type of the package created will match the platform
@@ -52,7 +52,7 @@ You can clean up all temporary files generated during the build process with
 the `clean` command:
 
 ```shell
-$ bin/omnibus clean keycloak-server
+$ bin/omnibus clean aerobase-iam
 ```
 
 Adding the `--purge` purge option removes __ALL__ files generated during the
@@ -60,7 +60,7 @@ build including the project install directory (`/opt/unifiedpush-server`) and
 the package cache directory (`/var/cache/omnibus/pkg`):
 
 ```shell
-$ bin/omnibus clean keycloak-server --purge
+$ bin/omnibus clean aerobase-iam --purge
 ```
 
 ### Publish
@@ -112,10 +112,10 @@ section:
 
 ```shell
 $ bundle exec kitchen login ubuntu-1204
-[vagrant@ubuntu...] $ cd omnibus-keycloak-server
+[vagrant@ubuntu...] $ cd omnibus-aerobase-iam-server
 [vagrant@ubuntu...] $ bundle install
 [vagrant@ubuntu...] $ ...
-[vagrant@ubuntu...] $ bin/omnibus build keycloak-server
+[vagrant@ubuntu...] $ bin/omnibus build aerobase-iam
 ```
 
 For a complete list of all commands and platforms, run `kitchen list` or
