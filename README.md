@@ -1,19 +1,19 @@
-Unifiedpush Server Omnibus 
+Aerobase IAM Server Omnibus 
 ==================================
 This project creates full-stack platform-specific packages for `aerobase-iam`.
 
 Download Binaries
 ------------
-Please follow the steps on the [downloads page](https://github.com/aerobase/unifiedpush-server/wiki/Unifiedpush-Installation)
+Please follow the steps on the [downloads page](https://aerobase.io/docs/gsg/index.html#_install-boot)
 
 Preperation 
 ------------
 only when runing under non root user.
 
 ```shell
-sudo mkdir -p /opt/unifiedpush-server /var/cache/omnibus
-sudo chown USER:USER /opt/unifiedpush
-sudo chown USER:USER /var/cache/omnibus
+sudo mkdir -p /opt/aerobase /var/cache/omnibus
+sudo chown $USER:$USER /opt/aerobase
+sudo chown $USER:$USER /var/cache/omnibus
 ```
 
 Installation
