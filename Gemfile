@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
  
 # Install omnibus
-gem 'omnibus', github: 'chef/omnibus', tag: 'v5.6.17'
+gem 'omnibus', github: 'chef/omnibus', tag: '6.1.4'
 gem 'omnibus-software', github: 'aerobase/omnibus-software', branch: 'master'
 gem 'json'
 
