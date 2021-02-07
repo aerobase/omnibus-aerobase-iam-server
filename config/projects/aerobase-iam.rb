@@ -26,6 +26,11 @@ install_dir "#{default_root}/aerobase"
 build_version IO.read(File.expand_path("../../../VERSION", __FILE__)).strip
 build_iteration 1
 
+# In order to prevent unecessary cache expiration,
+# package and package version overrides are kept in <project-root>/omnibus_overrides.rb
+overrides_path = File.expand_path("../../../omnibus_overrides.rb", __FILE__)
+instance_eval(IO.read(overrides_path), overrides_path)
+
 # Creates required build directories
 dependency "preparation"
 

@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
  
 # Install omnibus
-gem 'omnibus', git: 'https://github.com/chef/omnibus.git', tag: '8.0.0'
-gem 'omnibus-software', git: 'https://github.com/aerobase/omnibus-software.git', branch: '2.11.x'
+# Any version higher then 6.1.4 break the 2nd build. gems are not placed in aerobase home
+gem 'omnibus', git: 'https://github.com/chef/omnibus.git', tag: '8.0.9'
+gem 'omnibus-software', git: 'https://github.com/aerobase/omnibus-software.git', branch: 'master'
 gem 'json'
 
 # Use Chef's software definitions. It is recommended that you write your own
@@ -16,7 +17,7 @@ gem 'json'
 
 group :development do
   # Use Berkshelf for resolving cookbook dependencies
-  gem 'berkshelf', '~> 3.0'
+  gem 'berkshelf', '~> 7.0.10'
 
   # Use Test Kitchen with Vagrant for converging the build environment
   gem 'test-kitchen',    '~> 1.2'
