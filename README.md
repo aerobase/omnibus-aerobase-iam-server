@@ -27,8 +27,10 @@ gem install omnibus
 gem install bundler
 ```
 
-```shell
-$ bundle install --without development --binstubs
+```shell 
+bundle update
+bundle config set --local without 'development'
+bundle install --all
 ```
 
 Usage

@@ -29,11 +29,13 @@ gem -v
 mvn -v 
 git --version
 
-gem install bundler -v 2.1.4
-gem install omnibus -v 8.0.9
+gem install bundler -v 2.3.18
+gem install omnibus -v 9.0.24
+gem install rack -v 3.0.8
 
 bundle update
-bundle install --without development --binstubs
+bundle config set --local without 'development'
+bundle install --all
 
 if [ "${CLEAN_CACHE}" == "true" ]; then
 	bin/omnibus clean aerobase-iam --purge
