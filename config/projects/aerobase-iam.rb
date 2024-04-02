@@ -26,7 +26,6 @@ install_dir  "#{default_root}/#{name}"
 
 build_version IO.read(File.expand_path("../../../VERSION", __FILE__)).strip
 build_iteration 1
-health_check false
 
 # In order to prevent unecessary cache expiration,
 # package and package version overrides are kept in <project-root>/omnibus_overrides.rb
