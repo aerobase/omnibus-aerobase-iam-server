@@ -24,7 +24,7 @@ homepage "https://github.com/aerobase/omnibus-aerobase-iam-server"
 install_dir  "#{default_root}/aerobase"
 
 build_version IO.read(File.expand_path("../../../VERSION", __FILE__)).strip
-build_iteration 1
+build_iteration 2
 
 # In order to prevent unecessary cache expiration,
 # package and package version overrides are kept in <project-root>/omnibus_overrides.rb
