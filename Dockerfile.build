@@ -1,0 +1,61 @@
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+# System deps
+RUN apt-get update -q && apt-get install -yq --no-install-recommends \
+    build-essential \
+    git \
+    curl \
+    wget \
+    locales \
+    ca-certificates \
+    libssl-dev \
+    libreadline-dev \
+    zlib1g-dev \
+    libffi-dev \
+    libxml2-dev \
+    libxslt-dev \
+    libyaml-dev \
+    cmake \
+    pkg-config \
+    rpm \
+    fakeroot \
+    autoconf \
+    automake \
+    libtool \
+    m4 \
+    && locale-gen en_US.UTF-8 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Ruby 3.1 via rbenv
+ENV RBENV_ROOT=/usr/local/rbenv
+ENV PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
+RUN git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT \
+    && git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build \
+    && rbenv install 3.1.6 \
+    && rbenv global 3.1.6 \
+    && echo ":ssl_verify_mode: 0" > /root/.gemrc \
+    && gem update --system --no-document
+
+# Install required gems
+RUN gem install bundler -v 2.3.18 --no-document
+RUN gem install omnibus -v 9.0.24 --no-document
+
+# Build dirs
+RUN mkdir -p /opt/aerobase /var/cache/omnibus && chmod 777 /opt/aerobase /var/cache/omnibus
+
+WORKDIR /build
+COPY . /build
+
+RUN bundle config set --local without 'development' \
+    && bundle install
+
+# Wrapper script
+RUN printf '#!/bin/bash\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_DIR=/etc/ssl/certs\nmkdir -p /opt/aerobase/embedded/etc\necho ":ssl_verify_mode: 0" > /home/.gemrc\nexport GEMRC=/home/.gemrc\nbundle exec omnibus build aerobase-iam "$@"\n' > /build/omnibus-build.sh \
+    && chmod +x /build/omnibus-build.sh
+
+CMD ["/build/omnibus-build.sh"]
